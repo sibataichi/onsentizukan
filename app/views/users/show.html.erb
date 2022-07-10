@@ -1,0 +1,19 @@
+<h1>マイアカウントページ</h1>
+<div>
+  <%= image_tag @user.get_profile_image %>
+  <h3><%= @user.name %></h3>
+  <h3><%= @user.profile %></h3>
+</div>
+<%= link_to "プロフィール編集", edit_user_path %>
+
+
+<h1>投稿一覧</h1>
+<% @posts.each do |post| %>
+<div>
+  <%= link_to post_path(post.id) do %>
+    <%= image_tag post.image, size: "200x200" %>
+  <% end %>
+  <p>タイトル：<%= post.title %></p>
+  <p>説明：<%= post.body %></p>
+</div>
+<% end %>
