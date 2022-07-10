@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :edit, :update] do
     resources :relationships, only: [:create, :destroy]
-    get 'follower'
-    get 'followed'
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
   end
 end
