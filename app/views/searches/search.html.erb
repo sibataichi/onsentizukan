@@ -1,5 +1,9 @@
-<%= render "searches/form" %>
-<% @posts.each do |post| %>
+<% if @model == 'user' %>
+	<h3>Users search for "<%= @content %>"</h3>
+
+<% elsif @model == 'post' %>
+	<h3>Posts search for "<%= @content %>"</h3>
+  <% @records.each do |post| %>
 <div>
   <P><%= post.user.name %></P>
    <%= link_to post_path(post) do %>
@@ -8,4 +12,5 @@
   <p><%= post.title %></p>
   <p><%= post.body %></p>
 </div>
+<% end %>
 <% end %>

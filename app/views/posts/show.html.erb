@@ -8,7 +8,9 @@
     <%= link_to "投稿を編集する", edit_post_path %>
     <%= link_to "投稿を削除する", post_path(@post), method: :delete %>
   <% end %>
-  <%= render "favorite", post: @post %>
+  <p id= "post_<%= @post.id %>">
+  <%= render "favorites/favorite", post: @post %>
+  </p>
 </div>
 
 <%= render "comment", post: @post, comment: @comment %>

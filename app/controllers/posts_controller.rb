@@ -11,7 +11,11 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    if params[:search] == nil || params[:search] == ''
+      @posts= Post.all
+    else
+      @posts = Post.where("body LIKE ? ",'%' + params[:search] + '%')
+    end
   end
 
   def show
