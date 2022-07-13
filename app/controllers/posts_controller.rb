@@ -14,10 +14,7 @@ class PostsController < ApplicationController
     if params[:search] == nil || params[:search] == ''
       @posts= Post.all
     else
-      #@posts = Post.where(["body LIKE(?) OR title LIKE(?)",'%' + params[:search] + '%','%' + params[:search] + '%'])
-      #binding.pry
       @posts = Post.joins(:user).where(["body LIKE(?) OR title LIKE(?) OR name LIKE(?)",'%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%'])
-      #Post.where['title LIKE(?) OR explanation LIKE(?) OR animal_name LIKE(?)', "%#{search}%", "%#{search}%", "%#{search}%"])
     end
   end
 

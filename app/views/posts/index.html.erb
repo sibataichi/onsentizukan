@@ -2,8 +2,10 @@
 <% @posts.each do |post| %>
 <div>
   <P><%= post.user.name %></P>
+  <% if post.image.attached? %>
    <%= link_to post_path(post) do %>
     <%= image_tag post.image, size: "200x200" %>
+   <% end %>
   <% end %>
   <p><%= post.title %></p>
   <p><%= post.body %></p>

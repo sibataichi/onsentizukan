@@ -1,6 +1,8 @@
 <h1>マイアカウントページ</h1>
 <div>
+  <% if @user.profile_image.attached? %>
   <%= image_tag @user.get_profile_image %>
+  <% end %>
   <h3>
     <%= @user.name %>
     <%= render "follow" , user: @user %>
@@ -13,8 +15,10 @@
 <h1>投稿一覧</h1>
 <% @posts.each do |post| %>
 <div>
+  <% if post.image.attached? %>
   <%= link_to post_path(post.id) do %>
     <%= image_tag post.image, size: "200x200" %>
+  <% end %>
   <% end %>
   <p>タイトル：<%= post.title %></p>
   <p>説明：<%= post.body %></p>
