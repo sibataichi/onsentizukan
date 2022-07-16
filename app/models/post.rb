@@ -6,11 +6,13 @@ class Post < ApplicationRecord
    has_many :notifications, dependent: :destroy
    has_many :post_tag_relations, dependent: :destroy
    has_many :tags, through: :post_tag_relations, dependent: :destroy
+   geocoded_by :address
+   after_validation :geocode, if: :address_changed?
 
    def favorited_by?(user)
       favorites.exists?(user_id: user.id)
    end
-   
+
     def create_notification_by(current_user)
       notification = current_user.active_notifications.new(
          item_id: id,
