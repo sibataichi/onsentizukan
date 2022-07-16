@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
+    collection do
+      get 'maps' => 'posts#maps', as: 'maps'
+    end
   end
 
   resources :users, only: [:index, :show, :edit, :update] do

@@ -1,0 +1,60 @@
+<input id="address" type="textbox">
+<input type="button" value="検索" onclick="codeAddress()">
+
+<div id='map' style="height: 600px; width: 100%;"></div>
+<script>
+    let geocoder
+    let map
+    function initMap() {
+      geocoder = new google.maps.Geocoder()
+      let latlng = new google.maps.LatLng(38.60, 139.5);
+      let styles = [
+           {
+            stylers: [
+             { "saturation": 0 },
+             { "lightness": 0 }
+            ]
+           }
+          ];
+      map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5.5,
+          styles: styles,
+          center: latlng
+      });
+      let transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(map);
+
+      //複数マーカー
+      <% @posts.each do |post|%>
+        ( function() {
+          let markerLatLng = new google.maps.LatLng({lat: <%= post.latitude %>, lng: <%= post.longitude %>});
+          let marker = new google.maps.Marker({
+            position: markerLatLng,
+            map: map
+          });
+    　　　//マーカーをクリックし詳細情報を表示
+          let infowindow = new google.maps.InfoWindow({
+            position: markerLatLng,
+            content: "<a href='<%= post_url(post.id) %>' target='_blank'><%= post.body %></a>"
+          }); //詳細ページへのリンクを表示
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+       })();
+      <% end %>
+　  }
+
+　  function codeAddress(){
+　    let inputAddress = document.getElementById('address').value;
+
+      geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+        if (status == 'OK') {
+          map.setCenter(results[0].geometry.location);
+        　map.setZoom(10.8)
+        } else {
+          alert('該当する結果がありませんでした：' + status);
+        }
+      });
+    }
+</script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>

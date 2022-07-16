@@ -18,6 +18,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def maps
+    @posts = Post.all
+  end
+
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
