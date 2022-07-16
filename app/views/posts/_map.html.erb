@@ -9,9 +9,11 @@
       center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %> },
       zoom: 15
       });
+      marker = new google.maps.Marker({
+      position:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+      map: map
+  });
+
     }
-    window.onload = function () {
-    initMap();
-  }
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>

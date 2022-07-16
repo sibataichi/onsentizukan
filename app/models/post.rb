@@ -6,6 +6,7 @@ class Post < ApplicationRecord
    has_many :notifications, dependent: :destroy
    has_many :post_tag_relations, dependent: :destroy
    has_many :tags, through: :post_tag_relations, dependent: :destroy
+
    geocoded_by :address
    after_validation :geocode, if: :address_changed?
 
