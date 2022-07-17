@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    sessions: 'users/sessions'
+  }
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'posts#index'
   get 'homes/top'
   get 'homes/about'
-  post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  get 'unsubscribe/:user_id' => 'homes#unsubscribe', as: 'confirm_unsubscribe'
+  patch 'withdraw/:user_id' => 'homes#withdraw', as: 'withdraw_user'
 
   resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
     resources :comments, only: [:create, :destroy]

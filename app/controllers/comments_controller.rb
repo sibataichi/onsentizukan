@@ -6,9 +6,12 @@ class CommentsController < ApplicationController
     @comment.post_id = post.id
     @comment_post = @comment.post
     if @comment.save
-    @comment_post.create_notification_comment!(current_user, @comment.id)
+      @comment_post.create_notification_comment!(current_user, @comment.id)
+      redirect_to post_path(post)
+    else
+      redirect_to post_path(post)
     end
-    redirect_to post_path(post)
+
   end
 
   def destroy

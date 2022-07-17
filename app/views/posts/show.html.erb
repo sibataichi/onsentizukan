@@ -1,4 +1,12 @@
 <h1>投稿詳細画面</h1>
+<% if @comment.errors.any? %>
+  <%= @comment.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @comment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <div>
   <% if @post.image.attached? %>
   <%= image_tag @post.image, size: "200x200" %>
@@ -9,7 +17,7 @@
 
   <%= render "map", post: @post %>
 
-  <% if @post.user == current_user %>
+  <% if @post.user == current_user || current_user.admin? %>
     <%= link_to "投稿を編集する", edit_post_path %>
     <%= link_to "投稿を削除する", post_path(@post), method: :delete %>
   <% end %>
@@ -18,5 +26,4 @@
     <%= render "favorites/favorite", post: @post %>
   </div>
 </div>
-
 <%= render "comment", post: @post, comment: @comment %>

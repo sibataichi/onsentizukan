@@ -1,4 +1,12 @@
 <h2>投稿編集</h2>
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_with model: @post do |f| %>
 <p>
   <label for="inputImage">投稿画像</label>

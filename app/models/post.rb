@@ -4,11 +4,12 @@ class Post < ApplicationRecord
    has_many :comments, dependent: :destroy
    has_many :favorites, dependent: :destroy
    has_many :notifications, dependent: :destroy
-   has_many :post_tag_relations, dependent: :destroy
-   has_many :tags, through: :post_tag_relations, dependent: :destroy
-
    geocoded_by :address
    after_validation :geocode, if: :address_changed?
+   validates :title, presence: true
+   validates :body, presence: true
+   validates :image, presence: true
+   validates :address, presence: true
 
    def favorited_by?(user)
       favorites.exists?(user_id: user.id)
@@ -17,7 +18,7 @@ class Post < ApplicationRecord
 
    def create_notification_by(current_user)
 	    notification = current_user.active_notifications.new(
-	      item_id: id,
+	      post_id: id,
 	      visited_id: user_id,
 	      action: "favorite"
 	    )
@@ -47,5 +48,5 @@ class Post < ApplicationRecord
           notification.checked = true
         end
         notification.save if notification.valid?
-    end
-  end
+   end
+end

@@ -1,4 +1,7 @@
 <h1>マイアカウントページ</h1>
+<% if @user == current_user || current_user.admin? %>
+<%= link_to "退会する", confirm_unsubscribe_path(@user) %>
+<% end %>
 <div>
   <% if @user.profile_image.attached? %>
   <%= image_tag @user.get_profile_image %>
@@ -9,7 +12,9 @@
   </h3>
   <h3><%= @user.profile %></h3>
 </div>
+<% if @user == current_user || current_user.admin? %>
 <%= link_to "プロフィール編集", edit_user_path %>
+<% end %>
 
 
 <h1>投稿一覧</h1>

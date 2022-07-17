@@ -1,16 +1,23 @@
 <div class="container">
  <div class="row">
-  <div class="col-4 mx-auto">
-  <%= render "searches/form" %>
+  <div class="col-12 clearfix">
+    <div class="float-right">
+     <%= link_to new_post_path, class: "nav-link text-light text-center bg-info" do %>
+     <i class="fas fa-light fa-plus"></i>　 NewPost
+     <% end %>
+     <P></P>
+     <%= render "searches/form" %>
+    </div>
   </div>
  </div>
+ <P></P>
  <div class="row">
   <div class="col-4 mx-auto">
   <% @posts.each do |post| %>
    <div class="card">
       <% if post.image.attached? %>
        <%= link_to post_path(post) do %>
-        <%= image_tag post.image, size: "400x400" %>
+        <%= image_tag post.image, size: "300x300" %>
    <div class="card-img-overlay">
      <%= image_tag post.user.profile_image, class: "rounded-circle" %>
     <P class="text-white"><%= post.user.name %></P>
@@ -20,6 +27,6 @@
         <% end %>
       <% end %>
     <% end %>
-     </div>
     </div>
   </div>
+ </div>

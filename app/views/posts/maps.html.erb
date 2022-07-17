@@ -1,7 +1,15 @@
-<input id="address" type="textbox">
-<input type="button" value="検索" onclick="codeAddress()">
-
-<div id='map' style="height: 600px; width: 100%;"></div>
+<div class="container">
+ <div class="row">
+  <div class="col-12 clearfix">
+    <div class="float-right test-box">
+      <h6>地図から投稿検索</h6>
+      <input id="address" type="textbox">
+      <input type="button" value="検索" onclick="codeAddress()">
+    </div>
+  </div>
+ </div>
+ <P></P>
+<div id='map' style="height: 400px; width: 100%;"></div>
 <script>
     let geocoder
     let map
@@ -17,7 +25,7 @@
            }
           ];
       map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 5.5,
+          zoom: 5,
           styles: styles,
           center: latlng
       });
