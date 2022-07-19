@@ -1,4 +1,3 @@
-<h1>投稿詳細画面</h1>
 <% if @comment.errors.any? %>
   <%= @comment.errors.count %>件のエラーが発生しました
   <ul>
@@ -7,23 +6,68 @@
     <% end %>
   </ul>
 <% end %>
-<div>
-  <% if @post.image.attached? %>
-  <%= image_tag @post.image, size: "200x200" %>
-  <% end %>
-  <p>タイトル：<%= @post.title%></p>
-  <p>説明：<%= @post.body %></p>
-  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-
-  <%= render "map", post: @post %>
-
-  <% if @post.user == current_user || current_user.admin? %>
-    <%= link_to "投稿を編集する", edit_post_path %>
-    <%= link_to "投稿を削除する", post_path(@post), method: :delete %>
-  <% end %>
-
-  <div id="post_<%= @post.id %>">
-    <%= render "favorites/favorite", post: @post %>
+<div class="container">
+  <div class="row border-bottom boder-dark">
+    <div class="col-1"></div>
+    <div class="col mt-2">
+      <h2><strong>投稿詳細</strong></h2>
+    </div>
+    <div class="col-3 mt-4 d-flex flex-row">
+      <% if @post.user == current_user || current_user.admin? %>
+        <%= link_to edit_post_path, class: "text-info" do %>
+        <h6 class="bg-light border-bottom boder-dark"><strong>投稿編集する</strong></h6>
+        <% end %>
+        <h6>　</h6>
+        <%= link_to post_path(@post), method: :delete, class: "text-danger" do %>
+        <h6 class="bg-light border-bottom boder-dark"><strong>投稿削除する</strong></h6>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
-<%= render "comment", post: @post, comment: @comment %>
+
+<div class="container bg-light">
+  <div class="row"></div>
+  <div class="row mt-4">
+    <div class="col-4"></div>
+    <div class="col-3">
+      <h6><strong>ユーザー名：<%= @post.user.name %></strong></h6>
+    </div>
+  </div>
+  <div class="row"></div>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-3">
+      <% if @post.image.attached? %>
+      <%= image_tag @post.image, size: "300x300" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <h6><strong>・タイトル：<%= @post.title%></strong></h6>
+      <h6><strong>・説明：<%= @post.body %></storong></h6>
+      <p>・投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+      <div id="post_<%= @post.id %>">
+        <%= render "favorites/favorite", post: @post %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4　">
+    <div class="col-4"></div>
+    <div class="col-5">
+      <h6><strong>・撮影場所：<br>
+      <%= @post.address %>
+      </strong></h6>
+      <%= render "map", post: @post %>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-4"></div>
+    <div class="col-5">
+    <%= render "comment", post: @post, comment: @comment %>
+    </div>
+  </div>

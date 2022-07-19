@@ -7,6 +7,9 @@ class HomesController < ApplicationController
 
   def unsubscribe
     @user = User.find(params[:user_id])
+    if @user.id != current_user.id
+      redirect_to root_path
+    end
   end
 
   def withdraw

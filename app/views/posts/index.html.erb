@@ -1,33 +1,32 @@
-<%= image_tag '/assets/24198720_s.jpg' %>
 <div class="container">
  <div class="row">
   <div class="col-12 clearfix">
     <div class="float-right">
      <%= link_to new_post_path, class: "nav-link text-light text-center bg-info" do %>
-     <i class="fas fa-light fa-plus"></i>　 NewPost
+     <i class="fas fa-light fa-plus"></i>　 投稿する
      <% end %>
      <P></P>
      <%= render "searches/form" %>
     </div>
   </div>
  </div>
- <P></P>
+ 最新投稿
  <div class="row">
-  <div class="col-4 mx-auto">
   <% @posts.each do |post| %>
+  <div class="col-4 mx-auto">
    <div class="card">
-      <% if post.image.attached? %>
-       <%= link_to post_path(post) do %>
-        <%= image_tag post.image, size: "300x300" %>
+    <% if post.image.attached? %>
+    <%= link_to post_path(post) do %>
+    <%= image_tag post.image, size: "300x300" %>
    <div class="card-img-overlay">
-     <%= image_tag post.user.profile_image, class: "rounded-circle" %>
+    <%= image_tag post.user.profile_image, class: "rounded-circle" %>
     <P class="text-white"><%= post.user.name %></P>
     <p class="text-white"><%= post.title %></p>
    </div>
    </div>
         <% end %>
       <% end %>
-    <% end %>
     </div>
+    <% end %>
   </div>
  </div>
