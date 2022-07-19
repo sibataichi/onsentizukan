@@ -1,11 +1,11 @@
 <P></P>
 <h6><strong>
   <%= link_to user_followings_path(user), class: "text-dark" do %>
-  フォロー
+  フォロー　　　　<%= user.followings.count %>
   <% end %>
   <P></P>
   <%= link_to user_followers_path(user), class: "text-dark" do %>
-  フォロワー
+  フォロワー　　　<%= user.followers.count %>
   <% end %>
   <P></P>
   <% if current_user.following?(user) %>
