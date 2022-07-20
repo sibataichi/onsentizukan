@@ -17,3 +17,5 @@
   height: 300px;
   width: 400px;
 }
+body {
+  background-image: image-url("hoge.jpg");}
