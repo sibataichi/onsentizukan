@@ -55,14 +55,14 @@
   </div>
   <div class="row mt-2">
     <% @posts.each do |post| %>
-    <div class="col mx-auto">
-      <% if post.image.attached? %>
-      <%= link_to post_path(post.id) do %>
-      <%= image_tag post.image, size: "165x165" %>
-      <% end %>
-      <% end %>
-  　　　<p>タイトル：<%= post.title %></p>
-　　</div>
+      <div class="col mx-auto">
+        <% if post.image.attached? %>
+          <%= link_to post_path(post.id) do %>
+          <%= image_tag post.image, size: "165x165" %>
+          <% end %>
+        <% end %>
+  　　  　<p>タイトル：<%= post.title %></p>
+　　  </div>
 　　<% end %>
   </div>
 </div>

@@ -13,7 +13,7 @@
       <h2><strong>投稿詳細</strong></h2>
     </div>
     <div class="col-3 mt-4 d-flex flex-row">
-      <% if @post.user == current_user || current_user.admin? %>
+      <% if user_signed_in? && (@post.user == current_user || current_user.admin?) %>
         <%= link_to edit_post_path, class: "text-info" do %>
         <h6 class="bg-light border-bottom boder-dark"><strong>投稿編集する</strong></h6>
         <% end %>
