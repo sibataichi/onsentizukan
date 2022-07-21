@@ -16,7 +16,7 @@
  <div class="row">
   <div class="col-5"></div>
   <div class="col-4">
-   <h2><strong>投稿一覧</strong></h2>
+   <h2><strong>最新投稿</strong></h2>
   </div>
  </div>
 </div>
@@ -38,5 +38,13 @@
      </div>
     </div>
    <% end %>
+  </div>
+ </div>
+
+ <div class="container mt-1">
+  <div class="row">
+   <div class="col-2 mx-auto">
+    <%= paginate @posts %>
+   </div>
   </div>
  </div>

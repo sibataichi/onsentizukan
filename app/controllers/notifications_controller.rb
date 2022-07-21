@@ -7,7 +7,7 @@ class NotificationsController < ApplicationController
   	@notifications.where(checked: false).each do |notification|
     		notification.update(checked: true)
     end
-	end
+  end
 
   def destroy_all
     #通知を全削除

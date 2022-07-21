@@ -34,5 +34,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :genres, only: [:index, :create, :edit, :update]
+
 
 end

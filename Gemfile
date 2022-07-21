@@ -64,3 +64,4 @@ group :production do
 end
 gem 'gmaps4rails'
 gem 'geocoder'
+gem 'kaminari','~> 1.2.1'

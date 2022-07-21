@@ -4,7 +4,17 @@
     <div class="col mt-2">
       <h2><strong>ユーザー</strong></h2>
     </div>
-    <div class="col-3 mt-4 d-flex flex-row">
+    <div class="col-5 mt-4 d-flex flex-row">
+      <% if @user == current_user.admin? %>
+       <%= link_to genres_path, class: "text-success" do %>
+       <h6 class="bg-light border-bottom boder-dark"><strong>ジャンル追加</strong></h6>
+       <% end %>
+       <h6>　</h6>
+       <%= link_to users_path, class:"text-success" do %>
+       <h6 class="bg-light border-bottom boder-dark"><strong>ユーザー一覧</strong></h6>
+       <% end %>
+      <% end %>
+      <h6>　</h6>
       <% if @user == current_user || current_user.admin? %>
         <%= link_to edit_user_path, class: "text-info" do %>
         <h6 class="bg-light border-bottom boder-dark"><strong>プロフィール編集</strong></h6>

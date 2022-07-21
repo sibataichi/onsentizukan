@@ -16,9 +16,10 @@ class PostsController < ApplicationController
 
   def index
     if params[:search] == nil || params[:search] == ''
-      @posts= Post.all
+      @posts= Post.order(created_at: :desc).page(params[:page])
     else
-      @posts = Post.joins(:user).where(["body LIKE(?) OR title LIKE(?) OR name LIKE(?)",'%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%'])
+      @posts = Post.joins(:user).where(["body LIKE(?) OR title LIKE(?) OR name LIKE(?) OR address LIKE(?)",'%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%']).order(created_at: :desc).page(params[:page])
+      #binding.pry
     end
   end
 
@@ -57,7 +58,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :title, :body, :address, :latitude, :longitude,)
+    params.require(:post).permit(:image, :title, :body, :address, :latitude, :longitude, :genre_id)
   end
 
   def article_params
