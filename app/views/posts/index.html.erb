@@ -3,7 +3,7 @@
   <div class="col-12 clearfix">
     <div class="float-right ">
      <%= link_to new_post_path, class: "text-dark text-center bg-light" do %>
-     <i class="fas fa-light fa-plus"></i>投稿する
+       <i class="fas fa-light fa-plus"></i>投稿する
      <% end %>
      <P></P>
      <%= render "searches/form" %>
@@ -14,11 +14,17 @@
 
 <div class="container mt-3">
  <div class="row">
-  <div class="col-5"></div>
-  <div class="col-4">
+  <div class="col-2"></div>
+  <div class="col-4 mx-auto">
    <h2><strong>最新投稿</strong></h2>
   </div>
  </div>
+<div class="row">
+ <div class="col-1"></div>
+ <div class="col-4 mx-auto">
+  <%= render "genres/genrebar" %>
+ </div>
+</div>
 </div>
 <div class="container bg-light">
  <div class="row mt-3">

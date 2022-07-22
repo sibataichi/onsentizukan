@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-   before_action :authenticate_user!, except: [:index, :show]
+   before_action :authenticate_user!, except: [:index, :show, :genre_search]
+
   def new
     @post = Post.new
   end
@@ -17,9 +18,10 @@ class PostsController < ApplicationController
   def index
     if params[:search] == nil || params[:search] == ''
       @posts= Post.order(created_at: :desc).page(params[:page])
+      @genres = Genre.all
     else
       @posts = Post.joins(:user).where(["body LIKE(?) OR title LIKE(?) OR name LIKE(?) OR address LIKE(?)",'%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%']).order(created_at: :desc).page(params[:page])
-      #binding.pry
+      @genres = Genre.all
     end
   end
 
@@ -54,14 +56,16 @@ class PostsController < ApplicationController
     end
   end
 
+  def genre_search
+    @genres = Genre.all
+    posts = Post.genre_search(params[:genre_id])
+    @posts= posts.order(created_at: :desc).page(params[:page])
+    @genre_name = Genre.find(params[:genre_id]).name
+  end
 
   private
 
   def post_params
     params.require(:post).permit(:image, :title, :body, :address, :latitude, :longitude, :genre_id)
-  end
-
-  def article_params
-    params.require(:article).permit(:body, tag_ids: [])
   end
 end

@@ -27,6 +27,9 @@
           <%= link_to edit_genre_path(genre.id), class: "btn btn-sm btn-success" do %>
           編集する
           <% end %>
+          <%= link_to genre_path(genre.id), method: :delete, class: "btn btn-sm btn-danger" do %>
+          削除する
+          <% end %>
         </td>
       </tr>
       <% end %>

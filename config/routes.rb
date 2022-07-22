@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
     collection do
+      get "genre_search" => "posts#genre_search"
       get 'maps' => 'posts#maps', as: 'maps'
     end
   end
@@ -34,7 +35,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :genres, only: [:index, :create, :edit, :update]
+  resources :genres, only: [:index, :create, :edit, :destroy, :update]
 
 
 end

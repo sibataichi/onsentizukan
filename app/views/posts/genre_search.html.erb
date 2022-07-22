@@ -1,0 +1,15 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-2">
+      <%= render "genres/genrebar", genres: @genres%>
+    </div>
+    <div class="col-10">
+      <h2 class="text-center">ジャンル検索結果 "<%= @genre_name %>"</h2>
+      <h5 class=" text-center mb-5">検索結果は<%= @posts.count %>件です。</h5>
+      <%= render "posts/genre_result", posts: @posts %>
+      <div class="mt-4 mb-4 justify-content-center d-flex">
+        <%= paginate @posts %>
+      </div>
+    </div>
+  </div>
+</div>
