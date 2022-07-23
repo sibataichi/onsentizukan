@@ -1,20 +1,20 @@
 <P></P>
 <h6><strong>
   <%= link_to user_followings_path(user), class: "text-dark" do %>
-  フォロー　　　　<%= user.followings.count %>
+    フォロー　　　　<%= user.followings.count %>
   <% end %>
   <P></P>
   <%= link_to user_followers_path(user), class: "text-dark" do %>
-  フォロワー　　　<%= user.followers.count %>
+    フォロワー　　　<%= user.followers.count %>
   <% end %>
   <P></P>
   <% if current_user.following?(user) %>
-  <%= link_to user_relationship_path(user), method: :delete,  class: "text-danger" do %>
-  フォロー解除
-  <% end %>
+    <%= link_to user_relationship_path(user), method: :delete,  class: "text-danger" do %>
+      フォロー解除
+    <% end %>
 　<% else %>
-  <%= link_to user_relationships_path(user), method: :post, class: "text-primary" do %>
-  フォローする
-  <% end %>
+    <%= link_to user_relationships_path(user), method: :post, class: "text-primary" do %>
+      フォローする
+    <% end %>
 　<% end %>
 </strong></h6>

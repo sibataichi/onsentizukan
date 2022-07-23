@@ -1,5 +1,5 @@
  <h6>投稿検索</h6>
  <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
- <%= text_field_tag :search %>
- <%= submit_tag '検索する' %>
+  <%= text_field_tag :search %>
+  <%= submit_tag '検索する' %>
  <% end %>

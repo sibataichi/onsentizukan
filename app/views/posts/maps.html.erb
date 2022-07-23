@@ -1,37 +1,37 @@
 <div class="container">
- <div class="row">
-  <div class="col-12 clearfix">
-    <div class="float-right test-box">
-      <h6><strong>地図から投稿検索</strong></h6>
-      <input id="address" type="textbox">
-      <input type="button" value="検索" onclick="codeAddress()">
+  <div class="row">
+    <div class="col-12 clearfix">
+      <div class="float-right test-box">
+        <h6><strong>地図から投稿検索</strong></h6>
+        <input id="address" type="textbox">
+        <input type="button" value="検索" onclick="codeAddress()">
+      </div>
     </div>
   </div>
- </div>
- <P></P>
-<div id='map' style="height: 400px; width: 100%;"></div>
-<script>
+
+  <P></P>
+  <div id='map' style="height: 400px; width: 100%;"></div>
+  <script>
     let geocoder
     let map
     function initMap() {
       geocoder = new google.maps.Geocoder()
       let latlng = new google.maps.LatLng(38.60, 139.5);
       let styles = [
-           {
-            stylers: [
-             { "saturation": 0 },
-             { "lightness": 0 }
-            ]
-           }
-          ];
+        {
+          stylers: [
+           { "saturation": 0 },
+           { "lightness": 0 }
+          ]
+         }
+      ];
       map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 5,
-          styles: styles,
-          center: latlng
+        zoom: 5,
+        styles: styles,
+        center: latlng
       });
       let transitLayer = new google.maps.TransitLayer();
       transitLayer.setMap(map);
-
       //複数マーカー
       <% @posts.each do |post|%>
         ( function() {
@@ -40,29 +40,31 @@
             position: markerLatLng,
             map: map
           });
-    　　　//マーカーをクリックし詳細情報を表示
+    　　  　//マーカーをクリックし詳細情報を表示
           let infowindow = new google.maps.InfoWindow({
             position: markerLatLng,
             content: "<a href='<%= post_url(post.id) %>' target='_blank'><%= post.body %></a>"
-          }); //詳細ページへのリンクを表示
+          });
+          //詳細ページへのリンクを表示
           marker.addListener('click', function() {
             infowindow.open(map, marker);
           });
-       })();
+        })();
       <% end %>
-　  }
 
-　  function codeAddress(){
-　    let inputAddress = document.getElementById('address').value;
-
+    }
+    function codeAddress(){
+      let inputAddress = document.getElementById('address').value;
       geocoder.geocode( { 'address': inputAddress}, function(results, status) {
         if (status == 'OK') {
           map.setCenter(results[0].geometry.location);
         　map.setZoom(10.8)
-        } else {
+        }
+        else {
           alert('該当する結果がありませんでした：' + status);
         }
       });
     }
-</script>
- <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+</div>

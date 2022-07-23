@@ -1,40 +1,9 @@
-<% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render "error", post: @post %>
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2><strong>投稿編集</strong></h2>
-      <%= form_with model: @post do |f| %>
-      <div class="form-group">
-        <h6>画像</h6>
-        <%= f.file_field :image, accept: "image/*" %>
-      </div>
-      <div class="form-group">
-        <h6>タイトル</h6>
-        <%= f.text_field :title %>
-      </div>
-      <div class="form-group">
-        <h6>説明</h6>
-        <%= f.text_area :body %>
-      </div>
-      <div class="form-group">
-        <h6>ジャンル</h6>
-        <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい", class:'form-control genre_id' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :address, '住所' %>
-        <%= f.text_field :address, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.submit class: 'btn btn-success' %>
-      </div>
-      <% end %>
+        <%= render "form", post: @post %>
     </div>
   </div>
 </div>
