@@ -12,7 +12,11 @@
         <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
         <td><%= user.name %></td>
         <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
-        <td><%= link_to "BANする", confirm_unsubscribe_path(user) %></td>
+        <td>
+          <%= link_to reject_user_path(id: user.id) do %>
+            <%= user.is_valid ? 'BANする' : 'BANから復旧する' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

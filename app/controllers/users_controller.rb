@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def edit
@@ -27,6 +27,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def reject_user
+    @user = User.find(params[:id])
+    if current_user.admin
+      # 会員のis_validを反転する
+      if @user.is_valid
+        @user.update(is_valid: false)
+      else
+        @user.update(is_valid: true)
+      end
+      redirect_to users_path
+    else
+      redirect_to root_path
+    end
+  end
 
   private
 

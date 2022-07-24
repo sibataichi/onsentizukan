@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'posts#index'
-  get 'homes/top'
-  get 'homes/about'
+  #get 'homes/top'今のところ使わない
+  #get 'homes/about'今のところ使わない
   get 'unsubscribe/:user_id' => 'homes#unsubscribe', as: 'confirm_unsubscribe'
   patch 'withdraw/:user_id' => 'homes#withdraw', as: 'withdraw_user'
-
+  get 'reject_user' => "users#reject_user"
   resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
@@ -34,6 +34,6 @@ Rails.application.routes.draw do
       delete :destroy_all
     end
   end
-  
+
   resources :genres, only: [:index, :create, :edit, :destroy, :update]
 end

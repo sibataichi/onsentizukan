@@ -59,12 +59,12 @@
     </div>
   </div>
   <div class="row mt-5">
-    <div class="col-4"></div>
+    <div class="col-4 ml-5"></div>
     　<h4 class="border-bottom boder-dark"><strong>　ユーザー投稿一覧　</strong></h4>
   </div>
   <div class="row mt-2">
     <% @posts.each do |post| %>
-      <div class="col mx-auto">
+      <div class="col-2 mx-auto">
         <% if post.image.attached? %>
           <%= link_to post_path(post.id) do %>
             <%= image_tag post.image, size: "165x165" %>
@@ -75,3 +75,10 @@
   　<% end %>
   </div>
 </div>
+ <div class="container mt-1">
+  <div class="row">
+   <div class="col-2 mx-auto">
+    <%= paginate @posts %>
+   </div>
+  </div>
+ </div>

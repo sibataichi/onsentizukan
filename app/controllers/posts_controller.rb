@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-   before_action :authenticate_user!, except: [:index, :show, :genre_search]
+   before_action :authenticate_user!, except: [:index, :show, :maps, :genre_search]
 
   def new
     @post = Post.new

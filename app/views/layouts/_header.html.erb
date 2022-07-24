@@ -38,13 +38,13 @@
           </li>
         <% else %>
           <li class='nav-item'>
-            <%= link_to homes_top_path,class: 'nav-link text-dark' do %>
-              <i class="fas fa-home"></i> Home
+            <%=  link_to posts_path ,class: 'nav-link text-dark' do %>
+              <i class="fa fa-edit" aria-hidden="true"></i> Posts
             <% end %>
           </li>
-          <li>
-            <%= link_to homes_about_path,class: 'nav-link text-dark' do %>
-              <i class="fas fa-link"></i> About
+          <li class='nav-item'>
+            <%= link_to maps_posts_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-solid fa-globe"></i> Map
             <% end %>
           </li>
           <li>
