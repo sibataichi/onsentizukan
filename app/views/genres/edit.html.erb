@@ -1,14 +1,18 @@
-<div class="genre-index">
+<div class="container">
   <div class="row">
-
-    <h3 class="bg-secondary">ジャンル編集</h3>
-    <%= form_with model: @genre, local:true do |f| %>
-      <h4 class="mt-3">
+    <div class="col">
+      <h3>ジャンル編集</h3>
+        <%= form_with model: @genre, local:true do |f| %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h6 class="mt-3">
         ジャンル名
         <%= f.text_field :name %>
         <%= f.submit :"変更を保存",  class: 'btn btn-success' %>
-      </h4>
-    <% end %>
-
+        <% end %>
+      </h6>
+    </div>
   </div>
 </div>

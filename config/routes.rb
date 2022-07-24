@@ -34,6 +34,5 @@ Rails.application.routes.draw do
       delete :destroy_all
     end
   end
-
-  resources :genres, only: [:index, :create, :edit, :destroy, :update]
+  resources :genres, only: [:index, :create, :edit, :update]
 end
