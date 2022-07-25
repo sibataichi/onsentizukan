@@ -30,12 +30,21 @@ class User < ApplicationRecord
 
   #画像の処理
   has_one_attached :profile_image
+  #showページのユーザー画像、ユーザーが投稿した画像のまま表示
+  def get_profile_original_image
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    profile_image.variant(resize_to_limit: [200, 200]).processed
+  end
+  #post indexページのアイコン画像
   def get_profile_image
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    profile_image.variant(resize_to_limit: [100, 100]).processed
+    profile_image.variant( resize: "200x200^", gravity: "center", crop: "200x200+0+0" ).processed
   end
 
   #通知機能
