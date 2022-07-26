@@ -5,7 +5,7 @@
       <h2><strong>ユーザー</strong></h2>
     </div>
     <div class="col-5 mt-4 d-flex flex-row">
-      <% if current_user.admin? %>
+      <% if user_signed_in? && current_user.admin? %>
        <%= link_to genres_path, class: "text-success" do %>
          <h6 class="bg-light border-bottom boder-dark"><strong>ジャンル追加</strong></h6>
        <% end %>
@@ -15,7 +15,7 @@
        <% end %>
       <% end %>
       <h6>　</h6>
-      <% if @user == current_user || current_user.admin? %>
+      <% if user_signed_in? && (@user == current_user || current_user.admin?) %>
         <%= link_to edit_user_path, class: "text-info" do %>
           <h6 class="bg-light border-bottom boder-dark"><strong>プロフィール編集</strong></h6>
         <% end %>
@@ -55,7 +55,9 @@
   <div class="row bg-light">
     <div class="col-3"></div>
     <div class="col-3">
+    <% if user_signed_in? %>
       <%= render "follow" , user: @user %>
+    <% end %>
     </div>
   </div>
   <div class="row mt-5">

@@ -10,7 +10,7 @@
 <div>
   <% post.comments.each do |comment| %>
     <p>
-      <%= image_tag comment.user.get_profile_image, size: "50×50" %>
+      <%= image_tag comment.user.get_profile_image, size: '70x70' %>
       <%= comment.user.name %>
       &nbsp;
       <%= comment.created_at.strftime('%Y/%m/%d') %>
