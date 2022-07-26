@@ -10,59 +10,58 @@
         <% if user_signed_in? %>
           <li class='nav-item'>
             <%= link_to user_path(current_user),class: 'nav-link text-dark' do %>
-              <i class="fas fa-home"></i> MyPage
+              <i class="fas fa-home"></i> マイページ
             <% end %>
           </li>
           <li class='nav-item'>
             <%=  link_to posts_path ,class: 'nav-link text-dark' do %>
-              <i class="fa fa-edit" aria-hidden="true"></i> Posts
+              <i class="fa fa-edit" aria-hidden="true"></i> 投稿
             <% end %>
           </li>
           <li class='nav-item'>
             <%= link_to maps_posts_path, class: 'nav-link text-dark' do %>
-            <i class="fas fa-solid fa-globe"></i> Map
+              <i class="fas fa-solid fa-globe"></i> マップ
             <% end %>
           </li>
-          <% if unchecked_notifications.any? %>
-            <i class="fas fa-circle" style="color: gold;"></i>
-          <% end %>
           <li class='nav-item'>
             <%= link_to notifications_path, class: 'nav-link text-dark' do %>
-              <i class="fas fa-solid fa-bell"></i> Notice
+              <i class="fas fa-solid fa-bell"></i> 通知
             <% end %>
           </li>
+            <% if unchecked_notifications.any? %>
+              <i class="fas fa-circle" style="color: gold;"></i>
+            <% end %>
           <li class='nav-item'>
             <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-dark' do %>
-              <i class="fas fa-sign-out-alt"></i> Logout
+              <i class="fas fa-sign-out-alt"></i> ログアウト
             <% end %>
           </li>
         <% else %>
           <li class='nav-item'>
             <%=  link_to posts_path ,class: 'nav-link text-dark' do %>
-              <i class="fa fa-edit" aria-hidden="true"></i> Posts
+              <i class="fa fa-edit" aria-hidden="true"></i> 投稿
             <% end %>
           </li>
           <li class='nav-item'>
             <%= link_to maps_posts_path, class: 'nav-link text-dark' do %>
-            <i class="fas fa-solid fa-globe"></i> Map
+            <i class="fas fa-solid fa-globe"></i> マップ
             <% end %>
           </li>
           <li>
             <%= link_to new_user_registration_path,class: 'nav-link text-dark' do %>
-              <i class="fas fa-user-plus"></i> Sign Up
+              <i class="fas fa-user-plus"></i> サインアップ
             <% end %>
           </li>
           <li>
             <%= link_to new_user_session_path ,class: 'nav-link text-dark' do %>
-              <i class="fas fa-sign-in-alt"></i> Login
+              <i class="fas fa-sign-in-alt"></i> ログイン
             <% end %>
           </li>
           <li>
             <%= link_to users_guest_sign_in_path, method: :post, class: 'nav-link text-dark' do %>
-              <i class="fas fa-duotone fa-users"></i> Guest Login
+              <i class="fas fa-duotone fa-users"></i> ゲストログイン
             <% end %>
           </li>
-
         <% end %>
         </ul>
       </div>
