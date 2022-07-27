@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @users = User.all
+    @users = User.order(created_at: :desc).page(params[:page]).per(6)
   end
 
   def show
@@ -13,8 +13,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    if @user.id != current_user.id
-      redirect_to root_path
+    if !current_user.admin?
+      if @user.id != current_user.id
+        redirect_to root_path
+      end
     end
   end
 
@@ -52,9 +54,6 @@ class UsersController < ApplicationController
     @users = User.all
     if  current_user.admin == false
       redirect_to root_path
-    else
-     render action: "index"
     end
   end
-
 end

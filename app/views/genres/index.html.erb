@@ -25,7 +25,7 @@
         <tr>
           <td><%= genre.name %></td>
           <td>
-            <%= link_to edit_genre_path(genre.id), class: "btn btn-sm btn-success" do %>
+            <%= link_to edit_genre_path(genre.id), class: "btn btn-sm btn-success", data: {"turbolinks" => false } do %>
             編集する
             <% end %>
           </td>
