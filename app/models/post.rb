@@ -56,9 +56,4 @@ class Post < ApplicationRecord
    def self.genre_search(search_genre)
      Post.where(genre_id: search_genre)
    end
-
-   #投稿画像
-   def get_image
-      image.variant( resize: "600x600^", gravity: "center", crop: "600x600+0+0" ).processed
-   end
 end

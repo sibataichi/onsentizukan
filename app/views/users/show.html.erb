@@ -69,7 +69,7 @@
       <div class="col-2 mx-auto">
         <% if post.image.attached? %>
           <%= link_to post_path(post.id) do %>
-            <%= image_tag post.get_image, size: "165x165" %>
+            <%= image_tag post.image, size: "165x165" %>
           <% end %>
         <% end %>
   　　  　<p>タイトル：<%= post.title %></p>

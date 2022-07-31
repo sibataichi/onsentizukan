@@ -33,7 +33,7 @@
     <div class="col-4"></div>
     <div class="col-3">
       <% if @post.image.attached? %>
-      <%= image_tag @post.get_image, size: "300x300" %>
+      <%= image_tag @post.image, size: "300x300" %>
       <% end %>
     </div>
   </div>

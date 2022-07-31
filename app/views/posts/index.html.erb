@@ -36,7 +36,7 @@
      <div class="card mx-auto" style="border: none; width: 300px; ">
        <% if post.image.attached? %>
         <%= link_to post_path(post) do %>
-         <%= image_tag post.get_image, size: "300x300"%>
+         <%= image_tag post.image, size: "300x300"%>
          <div class="card-img-overlay">
           <%= image_tag post.user.get_profile_image, class: "rounded-circle", :width =>'80', :height =>'80' %>
           <P class="text-white"><%= post.user.name %></P>
