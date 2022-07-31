@@ -1,7 +1,7 @@
 <div id="map" style="height: 250px; width: 300px;">
   </div>
   <script>
-    function initMap(){
+    function mapShow(){
       let map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %> },
         zoom: 15
@@ -12,4 +12,4 @@
       });
     }
   </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=mapShow" async defer></script>

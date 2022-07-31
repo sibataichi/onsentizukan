@@ -15,9 +15,10 @@
   <P></P>
   <div id='map' style="height: 400px; width: 100%;"></div>
   <script>
+  // $(document).on('turbolinks:load', function() {
     let geocoder
     let map
-    function initMap() {
+    function mapIndex() {
       geocoder = new google.maps.Geocoder()
       let latlng = new google.maps.LatLng(38.60, 139.5);
       let styles = [
@@ -68,6 +69,7 @@
         }
       });
     }
+  // });
   </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=mapIndex" async defer></script>
 </div>
