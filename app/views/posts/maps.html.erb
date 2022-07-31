@@ -62,7 +62,7 @@
       geocoder.geocode( { 'address': inputAddress}, function(results, status) {
         if (status == 'OK') {
           map.setCenter(results[0].geometry.location);
-        　map.setZoom(10.8)
+        　map.setZoom(9)
         }
         else {
           alert('該当する結果がありませんでした：' + status);
