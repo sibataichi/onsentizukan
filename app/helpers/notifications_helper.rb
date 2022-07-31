@@ -2,6 +2,7 @@ module NotificationsHelper
 
 	def notification_form(notification)
 		@visitor = notification.visitor
+		#コメントを毎回nilにすることでバグを回避する、前のコメントが悪さする可能性がある為。
 		@comment = nil
 		your_post = link_to 'あなたの投稿', post_path(notification), style:"font-weight: bold;"
 		@visitor_comment = notification.comment_id
@@ -17,7 +18,8 @@ module NotificationsHelper
 		end
 	end
 
+	#通知未確認の場合 headerに黄色いマーク点灯するよう記述している
 	def unchecked_notifications
     @notifications = current_user.passive_notifications.where(checked: false)
-  end
+    end
 end

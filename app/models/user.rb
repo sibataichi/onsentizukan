@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   #通知機能
+  #自分からの通知:active/相手からの通知:passive
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   #フォロー機能
@@ -49,6 +50,7 @@ class User < ApplicationRecord
 
   #通知機能
   def create_notification_follow!(current_user)
+    #フォロー連打を想定して一回のみレコード作成する　54行目
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
     if temp.blank?
       notification = current_user.active_notifications.new(

@@ -20,7 +20,9 @@ class PostsController < ApplicationController
       @posts= Post.order(created_at: :desc).page(params[:page])
       @genres = Genre.all
     else
-      @posts = Post.joins(:user).where(["body LIKE(?) OR title LIKE(?) OR name LIKE(?) OR address LIKE(?)",'%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%']).order(created_at: :desc).page(params[:page])
+      @posts = Post.joins(:user)
+      .where(["body LIKE(?) OR title LIKE(?) OR name LIKE(?) OR address LIKE(?)",'%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%'])
+      .order(created_at: :desc).page(params[:page])
       @genres = Genre.all
     end
   end
