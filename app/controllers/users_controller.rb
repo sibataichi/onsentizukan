@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
   def reject_user
     @user = User.find(params[:id])
+    #banする為に最初にアドミンか確認する
     if current_user.admin
       # 会員のis_validを反転する
       if @user.is_valid
