@@ -29,6 +29,11 @@
             編集する
             <% end %>
           </td>
+          <td>
+            <%= link_to genre_path(genre.id), method: :delete, class: "btn btn-sm btn-danger" do %>
+            削除する
+            <% end %>
+          </td>
         </tr>
         <% end %>
         </tbody>
