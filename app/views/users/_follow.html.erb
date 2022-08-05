@@ -8,13 +8,15 @@
     フォロワー　　　<%= user.followers.count %>
   <% end %>
   <P></P>
-  <% if current_user.following?(user) %>
-    <%= link_to user_relationship_path(user), method: :delete,  class: "text-danger" do %>
-      フォロー解除
-    <% end %>
-　<% else %>
-    <%= link_to user_relationships_path(user), method: :post, class: "text-primary" do %>
-      フォローする
-    <% end %>
-　<% end %>
+  <% if user_signed_in? && current_user != @user %>
+    <% if current_user.following?(user) %>
+      <%= link_to user_relationship_path(user), method: :delete,  class: "text-danger" do %>
+        フォロー解除
+      <% end %>
+  　<% else %>
+      <%= link_to user_relationships_path(user), method: :post, class: "text-primary" do %>
+        フォローする
+      <% end %>
+  　<% end %>
+  <% end %>
 </strong></h6>
