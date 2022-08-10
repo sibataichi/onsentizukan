@@ -38,7 +38,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    #検証ツールで削除できないように
+    #if文でアドミンとユーザー以外検証ツールで削除できないように
     if !current_user.admin?
       if @post.user_id != current_user.id
         redirect_to posts_path
