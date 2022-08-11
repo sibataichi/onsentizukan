@@ -20,6 +20,7 @@ class PostsController < ApplicationController
       @posts= Post.order(created_at: :desc).page(params[:page])
       @genres = Genre.all
     else
+      #検索機能
       @posts = Post.joins(:user)
       .where(["body LIKE(?) OR title LIKE(?) OR name LIKE(?) OR address LIKE(?)",'%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%'])
       .order(created_at: :desc).page(params[:page])
